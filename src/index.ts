@@ -54,28 +54,28 @@ export const RelationshipSchema = {
   description: 'A schema to represent a relationship between two entities.',
   type: 'object' as const,
   properties: {
-    source: {
+    subject: {
       type: 'string' as const,
       format: 'uri' as const,
-      description: 'The source entity of the relationship. Must be a URI.'
-    },
-    target: {
-      type: 'string' as const,
-      format: 'uri' as const,
-      description: 'The target entity of the relationship. Must be a URI.'
+      description: 'The subject entity of the relationship. Must be a URI.'
     },
     predicate: {
       type: 'string' as const,
       description: 'The type of relationship. Can be a URI or a descriptive string.'
+    },
+    object: {
+      type: 'string' as const,
+      format: 'uri' as const,
+      description: 'The object entity of the relationship. Must be a URI.'
     }
   },
-  required: ['source', 'target', 'predicate'] as const
+  required: ['subject', 'object', 'predicate'] as const
 }
 
 export type RelationshipType = {
-  source: string
-  target: string
+  subject: string
   predicate: string
+  object: string
 }
 
 export const SerializedEntitySchema = {
@@ -99,14 +99,14 @@ export const SerializedEntitySchema = {
       items: {
         type: 'object',
         properties: {
-          target: {
-            type: 'string' as const,
-            format: 'uri' as const,
-            description: 'A URI to the target entity.'
-          },
           predicate: {
             type: 'string' as const,
             description: 'The type of relationship. Can be a URI or a descriptive string.'
+          },
+          object: {
+            type: 'string' as const,
+            format: 'uri' as const,
+            description: 'A URI to the object entity.'
           }
         }
       }
@@ -118,5 +118,5 @@ export const SerializedEntitySchema = {
 export type SerializedEntityType = {
   id: string
   components: ComponentType[]
-  relationships: RelationshipType[]
+  relationships: Array<{ predicate: string; object: string }>
 }

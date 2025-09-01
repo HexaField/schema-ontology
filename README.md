@@ -90,9 +90,9 @@ TypeScript:
 
 ```ts
 type RelationshipType = {
-  source: string // URI of source entity
-  target: string // URI of target entity
-  predicate: string // URI (recommended) or descriptive string
+  subject: string // URI of subject entity
+  predicate: string // URI of relationship type
+  object: string // URI of object entity
 }
 ```
 
@@ -102,15 +102,15 @@ Examples:
 import { RelationshipType } from '@hexafield/schema-ontology'
 
 const knows: RelationshipType = {
-  source: 'did:example:alice',
-  target: 'did:example:bob',
-  predicate: 'https://schema.org/knows'
+  subject: 'did:example:alice',
+  predicate: 'https://schema.org/knows',
+  object: 'did:example:bob'
 }
 
 const enrolledIn: RelationshipType = {
-  source: 'https://example.com/users/42',
-  target: 'https://example.edu/courses/intro-to-graphs',
-  predicate: 'urn:example:predicate:enrolledIn'
+  subject: 'https://example.com/users/42',
+  predicate: 'urn:example:predicate:enrolledIn',
+  object: 'https://example.edu/courses/intro-to-graphs'
 }
 ```
 
@@ -122,8 +122,8 @@ Shape (JSON Schema-driven):
 
 - id: string (URI) — required
 - components: Component[] — array of `ComponentSchema` items
-- relationships: Array<{ target: string; predicate: string }>
-  - Note: `source` is omitted here and implicitly equals the entity’s `id`.
+- relationships: Array<{ predicate: string; object: string }>
+  - Note: `subject` is omitted here and implicitly equals the entity’s `id`.
 
 Example:
 
@@ -139,7 +139,7 @@ const alice: SerializedEntityType = {
       properties: { givenName: 'Alice', familyName: 'Doe' }
     }
   ],
-  relationships: [{ target: 'did:example:bob', predicate: 'https://schema.org/knows' }]
+  relationships: [{ predicate: 'https://schema.org/knows', object: 'did:example:bob' }]
 }
 ```
 
