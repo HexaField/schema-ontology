@@ -1,0 +1,22 @@
+{
+  "title": "Relationship Schema",
+  "description": "A schema to represent a relationship between two entities.",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "format": "uri",
+      "description": "The subject entity of the relationship. Must be a URI."
+    },
+    "predicate": {
+      "type": "string",
+      "description": "The type of relationship. Can be a URI or a descriptive string."
+    },
+    "object": {
+      "type": "string",
+      "format": "uri",
+      "description": "The object entity of the relationship. Must be a URI."
+    }
+  },
+  "required": ["subject", "object", "predicate"]
+}

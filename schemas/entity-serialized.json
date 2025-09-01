@@ -1,0 +1,55 @@
+{
+  "title": "Serialized Entity Schema",
+  "description": "An entity along with its components and relationships.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URI to the entity."
+    },
+    "components": {
+      "type": "array",
+      "description": "An array of components associated with the entity.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "format": "uri",
+            "description": "The subject entity of the relationship. Must be a URI."
+          },
+          "predicate": {
+            "type": "string",
+            "description": "The type of relationship. Can be a URI or a descriptive string."
+          },
+          "object": {
+            "type": "string",
+            "format": "uri",
+            "description": "The object entity of the relationship. Must be a URI."
+          }
+        },
+        "required": ["subject", "object", "predicate"]
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "description": "An array of relationships associated with the entity.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "predicate": {
+            "type": "string",
+            "description": "The type of relationship. Can be a URI or a descriptive string."
+          },
+          "object": {
+            "type": "string",
+            "format": "uri",
+            "description": "A URI to the object entity."
+          }
+        }
+      }
+    }
+  },
+  "required": ["id", "components", "relationships"]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Entity Schema",
+  "description": "Represents a pointer to some thing as a URI.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URI to a particular thing."
+    }
+  },
+  "required": ["id"]
+}

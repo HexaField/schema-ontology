@@ -1,0 +1,25 @@
+{
+  "title": "Component Schema",
+  "description": "A schema to represent some quality or property of an entity.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "format": "uri",
+      "description": "The type of the component. Must be a URI."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the component."
+    },
+    "label": {
+      "type": "string",
+      "description": "A label to display as a name for the component."
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": ["type"]
+}
